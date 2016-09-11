@@ -41,6 +41,11 @@ if(cluster.isMaster){
 
 	console.log(bundleConfig)
 
+
+	if (!fs.existsSync(bundleConfig.bundleOutputDir)){
+	    fs.mkdirSync(bundleConfig.bundleOutputDir);
+	}
+
 	fs.writeFile(bundleConfig.bundleOutputDir + 'bundle.config.js', "document.write(" + JSON.stringify(
 		"Building bundle...."
 	) + ")", 'utf8', function(err){
