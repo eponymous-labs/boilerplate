@@ -26,6 +26,7 @@
     "main": "index.js",
     "dependencies": {
       "babel-polyfill": "npm:babel-polyfill@^6.13.0",
+      "plugin-less": "github:eponymous-labs/plugin-less@0.2.0",
       "plugin-shoelace": "github:eponymous-labs/plugin-shoelace@master",
       "shoelace-reload": "github:eponymous-labs/shoelace-reload@master"
     },

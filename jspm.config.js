@@ -17,6 +17,11 @@ SystemJS.config({
         }
       }
     }
+  },
+  meta: {
+    "*.css": {
+      "loader": "plugin-less"
+    }
   }
 });
 
@@ -40,6 +45,7 @@ SystemJS.config({
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
     "os": "github:jspm/nodelibs-os@0.2.0-alpha",
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
+    "plugin-less": "github:eponymous-labs/plugin-less@0.2.0",
     "plugin-shoelace": "github:eponymous-labs/plugin-shoelace@master",
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
     "shoelace-reload": "github:eponymous-labs/shoelace-reload@master",
@@ -955,6 +961,11 @@ SystemJS.config({
     "github:eponymous-labs/shoelace-reload@master": {
       "map": {
         "socket.io-client": "github:socketio/socket.io-client@1.4.8"
+      }
+    },
+    "github:eponymous-labs/plugin-less@0.2.0": {
+      "map": {
+        "css": "github:systemjs/plugin-css@0.1.25"
       }
     }
   }
