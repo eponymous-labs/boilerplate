@@ -41,18 +41,30 @@ if(cluster.isMaster){
 
 	console.log(bundleConfig)
 
+	fs.writeFile(bundleConfig.bundleOutputDir + 'bundle.config.js', "document.write(" + JSON.stringify(
+		"Building bundle...."
+	) + ")", 'utf8', function(err){
+		if(!err) console.log('bundle.config.js written to disk')
+	})
+
+
 	configuredBundles.forEach(function(bundle){
 		forkBundle(bundle.modules, bundleConfig.bundleOutputDir + bundle.output, bundleConfig)
 	})
 
 	var bundles = {}
+	var bundleErrors = {}
 
-	function updateBundleMaster(bundlename, modules){
-		bundles[bundlename] = modules;
-
+	function updateBundleMaster(bundlename){
 		var data = 'System.config(' + JSON.stringify({
 			bundles: bundles
 		}, null, '\t') + ');\n'
+
+		Object.keys(bundleErrors).forEach(function(bundle){
+			data += '\ndocument.write(' + JSON.stringify(
+				"ERROR BUILDING " + bundle + "<div><pre>" + bundleErrors[bundle] + "</pre></div>"
+			) + ');\n';
+		})
 
 		fs.writeFile(bundleConfig.bundleOutputDir + 'bundle.config.js', data, 'utf8', function(err){
 			if(!err) console.log('bundle.config.js written to disk', bundlename)
@@ -71,7 +83,15 @@ if(cluster.isMaster){
 		    worker = undefined;
 		}
 		if(message.cmd === 'updateBundle'){
-			updateBundleMaster(message.bundlename, message.modules)
+			bundles[message.bundlename] = message.modules;
+			delete bundleErrors[message.bundlename];
+
+			updateBundleMaster(message.bundlename)
+		}else if(message.cmd === 'updateError'){
+			bundleErrors[message.bundlename] = message.error;
+			bundles[message.bundlename] = [];
+
+			updateBundleMaster(message.bundlename)
 		}
 	});
 
@@ -88,6 +108,12 @@ if(cluster.isMaster){
 		process.send({ cmd: 'updateBundle', bundlename: bundlename, modules: modules });
 	}
 
+	function updateError(bundlename, error){
+		process.send({ cmd: 'updateError', bundlename: bundlename, error: error });
+	}
+
+	var packet = JSON.parse(process.env.BUNDLE_PARAMS);
+
 	ui.setResolver({
 		emit: function(log, type, msg){
 			// console.log('____', type, msg)
@@ -99,15 +125,19 @@ if(cluster.isMaster){
 				// console.log('WUMBO', filename)
 				updatedModules.push(filename)
 			}else if(type === 'ok' && bundleRegex.test(msg)){
-				var bundlename = bundleRegex.exec(msg)[1];
+				// var bundlename = bundleRegex.exec(msg)[1];
 				// console.log('DERP DERP', bundlename)
-				updateBundle(bundlename, updatedModules)
+				updateBundle(packet.output, updatedModules)
 				updatedModules = []
-				
 			}
 
 			msg = msg || '';
 	  		msg = msg.toString();
+
+	  		if(type === 'err'){
+				updateError(packet.output, msg)
+			}
+
 	  		if (type) msg = (ui.format[type] || ui.format.info)(msg.toString());
 
 
@@ -121,7 +151,7 @@ if(cluster.isMaster){
 	ui.useDefaults(false);
 
 
-	var packet = JSON.parse(process.env.BUNDLE_PARAMS);
+	
 	bundle.bundle(
 		packet.expression,
 		packet.output,
@@ -133,5 +163,7 @@ if(cluster.isMaster){
 				process.exit(0)
 			}, 500)
 		}
+	}).catch(function(){
+		console.log('ERROR INITIAL BUILD FAILED')
 	})
 }
