@@ -1,3 +1,5 @@
-// import "react";
+import "babel-polyfill"
+import "shoelace-reload/default.js"
 
-console.log("hello")
+
+console.log("hello world")

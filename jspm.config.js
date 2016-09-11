@@ -13,7 +13,7 @@ SystemJS.config({
       "main": "index.js",
       "meta": {
         "*.js": {
-          format: "esm"
+          "format": "esm"
         }
       }
     }
@@ -28,6 +28,7 @@ SystemJS.config({
   ],
   map: {
     "assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
+    "babel-polyfill": "npm:babel-polyfill@6.13.0",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
     "child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",
     "constants": "github:jspm/nodelibs-constants@0.2.0-alpha",
@@ -35,16 +36,20 @@ SystemJS.config({
     "events": "github:jspm/nodelibs-events@0.2.0-alpha",
     "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
     "http": "github:jspm/nodelibs-http@0.2.0-alpha",
+    "https": "github:jspm/nodelibs-https@0.2.0-alpha",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
     "os": "github:jspm/nodelibs-os@0.2.0-alpha",
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
     "plugin-shoelace": "github:eponymous-labs/plugin-shoelace@master",
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
+    "shoelace-reload": "github:eponymous-labs/shoelace-reload@master",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
+    "tls": "github:jspm/nodelibs-tls@0.2.0-alpha",
     "url": "github:jspm/nodelibs-url@0.2.0-alpha",
     "util": "github:jspm/nodelibs-util@0.2.0-alpha",
-    "vm": "github:jspm/nodelibs-vm@0.2.0-alpha"
+    "vm": "github:jspm/nodelibs-vm@0.2.0-alpha",
+    "zlib": "github:jspm/nodelibs-zlib@0.2.0-alpha"
   },
   packages: {
     "github:eponymous-labs/plugin-shoelace@master": {
@@ -927,6 +932,29 @@ SystemJS.config({
     "github:jspm/nodelibs-string_decoder@0.2.0-alpha": {
       "map": {
         "string_decoder-browserify": "npm:string_decoder@0.10.31"
+      }
+    },
+    "npm:babel-polyfill@6.13.0": {
+      "map": {
+        "regenerator-runtime": "npm:regenerator-runtime@0.9.5",
+        "core-js": "npm:core-js@2.4.1",
+        "babel-runtime": "npm:babel-runtime@6.11.6"
+      }
+    },
+    "github:jspm/nodelibs-zlib@0.2.0-alpha": {
+      "map": {
+        "zlib-browserify": "npm:browserify-zlib@0.1.4"
+      }
+    },
+    "npm:browserify-zlib@0.1.4": {
+      "map": {
+        "readable-stream": "npm:readable-stream@2.1.5",
+        "pako": "npm:pako@0.2.9"
+      }
+    },
+    "github:eponymous-labs/shoelace-reload@master": {
+      "map": {
+        "socket.io-client": "github:socketio/socket.io-client@1.4.8"
       }
     }
   }
