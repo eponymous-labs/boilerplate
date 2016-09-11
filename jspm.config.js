@@ -33,15 +33,19 @@ SystemJS.config({
     "child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",
     "constants": "github:jspm/nodelibs-constants@0.2.0-alpha",
     "crypto": "github:jspm/nodelibs-crypto@0.2.0-alpha",
+    "domain": "github:jspm/nodelibs-domain@0.2.0-alpha",
     "events": "github:jspm/nodelibs-events@0.2.0-alpha",
     "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
     "http": "github:jspm/nodelibs-http@0.2.0-alpha",
     "https": "github:jspm/nodelibs-https@0.2.0-alpha",
+    "lodash": "npm:lodash@4.15.0",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
     "os": "github:jspm/nodelibs-os@0.2.0-alpha",
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
     "plugin-shoelace": "github:eponymous-labs/plugin-shoelace@master",
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
+    "react": "npm:react@15.3.1",
+    "react-dom": "npm:react-dom@15.3.1",
     "shoelace-reload": "github:eponymous-labs/shoelace-reload@master",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
@@ -955,6 +959,51 @@ SystemJS.config({
     "github:eponymous-labs/shoelace-reload@master": {
       "map": {
         "socket.io-client": "github:socketio/socket.io-client@1.4.8"
+      }
+    },
+    "npm:react@15.3.1": {
+      "map": {
+        "loose-envify": "npm:loose-envify@1.2.0",
+        "object-assign": "npm:object-assign@4.1.0",
+        "fbjs": "npm:fbjs@0.8.4"
+      }
+    },
+    "npm:fbjs@0.8.4": {
+      "map": {
+        "loose-envify": "npm:loose-envify@1.2.0",
+        "object-assign": "npm:object-assign@4.1.0",
+        "core-js": "npm:core-js@1.2.7",
+        "isomorphic-fetch": "npm:isomorphic-fetch@2.2.1",
+        "ua-parser-js": "npm:ua-parser-js@0.7.10",
+        "promise": "npm:promise@7.1.1",
+        "immutable": "npm:immutable@3.8.1"
+      }
+    },
+    "npm:isomorphic-fetch@2.2.1": {
+      "map": {
+        "node-fetch": "npm:node-fetch@1.6.0",
+        "whatwg-fetch": "npm:whatwg-fetch@1.0.0"
+      }
+    },
+    "npm:promise@7.1.1": {
+      "map": {
+        "asap": "npm:asap@2.0.4"
+      }
+    },
+    "npm:node-fetch@1.6.0": {
+      "map": {
+        "encoding": "npm:encoding@0.1.12",
+        "is-stream": "npm:is-stream@1.1.0"
+      }
+    },
+    "npm:encoding@0.1.12": {
+      "map": {
+        "iconv-lite": "npm:iconv-lite@0.4.13"
+      }
+    },
+    "github:jspm/nodelibs-domain@0.2.0-alpha": {
+      "map": {
+        "domain-browserify": "npm:domain-browser@1.1.7"
       }
     }
   }

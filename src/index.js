@@ -1,5 +1,11 @@
-import "babel-polyfill"
+import "babel-polyfill/dist/polyfill.js"
 import "shoelace-reload/default.js"
 
+import React from "react"
+import ReactDOM from "react-dom"
 
-console.log("hello world")
+function App(props){
+	return <div>hello world</div>
+}
+
+ReactDOM.render(<App />, document.getElementById("root"))

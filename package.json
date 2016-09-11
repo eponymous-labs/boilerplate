@@ -26,7 +26,9 @@
     "main": "index.js",
     "dependencies": {
       "babel-polyfill": "npm:babel-polyfill@^6.13.0",
+      "lodash": "npm:lodash@^4.15.0",
       "plugin-shoelace": "github:eponymous-labs/plugin-shoelace@master",
+      "react-dom": "npm:react-dom@^15.3.1",
       "shoelace-reload": "github:eponymous-labs/shoelace-reload@master"
     },
     "devDependencies": {},
@@ -36,6 +38,7 @@
       "child_process": "github:jspm/nodelibs-child_process@^0.2.0-alpha",
       "constants": "github:jspm/nodelibs-constants@^0.2.0-alpha",
       "crypto": "github:jspm/nodelibs-crypto@^0.2.0-alpha",
+      "domain": "github:jspm/nodelibs-domain@^0.2.0-alpha",
       "events": "github:jspm/nodelibs-events@^0.2.0-alpha",
       "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
       "http": "github:jspm/nodelibs-http@^0.2.0-alpha",
@@ -44,6 +47,7 @@
       "os": "github:jspm/nodelibs-os@^0.2.0-alpha",
       "path": "github:jspm/nodelibs-path@^0.2.0-alpha",
       "process": "github:jspm/nodelibs-process@^0.2.0-alpha",
+      "react": "npm:react@^15.3.1",
       "stream": "github:jspm/nodelibs-stream@^0.2.0-alpha",
       "string_decoder": "github:jspm/nodelibs-string_decoder@^0.2.0-alpha",
       "tls": "github:jspm/nodelibs-tls@^0.2.0-alpha",
@@ -123,6 +127,37 @@
       "npm:ms@0.7.1": {
         "jspmNodeConversion": false,
         "format": "cjs"
+      },
+      "npm:react-dom@15.3.1": {
+        "main": "dist/react-dom.js",
+        "format": "cjs",
+        "meta": {
+          "*.json": {
+            "format": "json"
+          }
+        },
+        "map": {}
+      },
+      "npm:react@15.3.1": {
+        "main": "dist/react.js",
+        "format": "cjs",
+        "meta": {
+          "*": {
+            "globals": {
+              "process": "process"
+            }
+          },
+          "*.json": {
+            "format": "json"
+          },
+          "dist/react-with-addons.js": {
+            "cjsRequireDetection": false
+          },
+          "dist/react.js": {
+            "cjsRequireDetection": false
+          }
+        },
+        "map": {}
       }
     }
   },
